@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
+import API from "../services/api";
 
 import DashboardLayout from "../layouts/DashboardLayout";
 
@@ -23,9 +24,7 @@ export default function ComplianceApprovals() {
 
         try {
 
-            const response = await axios.get(
-                "http://127.0.0.1:8000/duty-history"
-            );
+            const response = await API.get("/duty-history");
 
             setHistory(
                 response.data
@@ -51,11 +50,9 @@ export default function ComplianceApprovals() {
 
         try {
 
-            await axios.put(
-
-                `http://127.0.0.1:8000/approve-compliance/${id}`
-
-            );
+await API.put(
+ `/approve-compliance/${id}`
+);
 
             fetchHistory();
 
@@ -107,7 +104,7 @@ export default function ComplianceApprovals() {
 
         </div>
 
-        {/* KPI CARDS */}
+
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
@@ -358,7 +355,7 @@ export default function ComplianceApprovals() {
 
         <a
 
-        href={`http://127.0.0.1:8000/${item.uploaded_document}`}
+        href={`${import.meta.env.VITE_API_URL}/${item.uploaded_document}`}
 
         target="_blank"
 
@@ -382,7 +379,7 @@ export default function ComplianceApprovals() {
 
         <a
 
-        href={`http://127.0.0.1:8000/${item.uploaded_document}`}
+        href={`${import.meta.env.VITE_API_URL}/${item.uploaded_document}`}
 
         download
 

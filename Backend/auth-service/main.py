@@ -48,4 +48,21 @@ app.include_router(notification_router)
 app.mount("/uploads",StaticFiles(directory="uploads"),name="uploads")
 @app.get("/{full_path:path}")
 async def serve_react_app(full_path: str):
+    api_prefixes = [
+        "login",
+        "documents",
+        "payments",
+        "risk",
+        "shipments",
+        "dashboard-analytics",
+        "ai-insights",
+        "notifications",
+        "country-analytics",
+        "calculate-duty",
+        "uploads",
+        "duty-history",
+        "compliance"
+    ]
+    if any(full_path.startswith(prefix) for prefix in api_prefixes):
+        return {"detail": "API route not found"}
     return FileResponse("static/index.html")

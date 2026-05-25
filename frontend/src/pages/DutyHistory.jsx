@@ -69,8 +69,12 @@ export default function DutyHistory() {
             const response = await API.get(
                 "/duty-history"
             );
-            setHistory(response.data);
-            setFilteredHistory(response.data);
+const approvedOnly = response.data.filter(
+    (item) =>
+        item.compliance_status === "APPROVED"
+);
+setHistory(approvedOnly);
+setFilteredHistory(approvedOnly);
         } catch (error) {
             console.log(error);
         }
