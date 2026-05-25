@@ -64,22 +64,22 @@ export default function DutyHistory() {
         hsnFilter,
         history
     ]);
-    const fetchHistory = async () => {
-        try {
-            const response = await API.get(
-                "/api/duty-history"
-            );
-const approvedOnly = response.data.filter(
-    (item) =>
-        item.compliance_status === "APPROVED"
-);
+const fetchHistory = async () => {
+    try {
 
-setHistory(approvedOnly);
-setFilteredHistory(approvedOnly);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        const response = await API.get(
+            "/api/duty-history"
+        );
+
+        setHistory(response.data);
+        setFilteredHistory(response.data);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+};
     const fetchPayments = async () => {
         try {
             const response = await API.get(
