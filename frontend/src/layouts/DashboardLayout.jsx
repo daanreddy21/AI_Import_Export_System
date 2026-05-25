@@ -1,6 +1,6 @@
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/sidebar";
 import ManagerSidebar from "../components/ManagerSidebar";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 import FloatingChatbot from "../components/FloatingChatbot";
 export default function DashboardLayout({ children }) {
   const user =
